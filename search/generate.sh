@@ -1,1 +1,1 @@
-node ./build-lunrjs-index.js > static/search-index.json
+node ./build-lunrjs-index.js > $PWD/static/gen/search-index.json

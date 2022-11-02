@@ -1,0 +1,28 @@
+{{ define "main" -}}
+
+
+
+    <!-- Content -->
+    <div class="w3-container w3-card-4">
+    </div>
+      {{ .Content }}
+
+<form method="get" action="">
+  <input id="search" name="q" type="text" />
+  <button type="submit" class="button">Search</button>
+  <a href="/search">Clear</a>
+</form>
+<div id="#app"></div>
+
+<script src="https://unpkg.com/lunr/lunr.js"></script>
+<!-- Generate a list of posts so we can display them -->
+{{ $p := slice }}
+{{ range (where .Site.RegularPages "Section" "==" "post") }}
+  {{ $post := dict "link" .RelPermalink "title" .Title "content" (substr .Plain 0 200) -}}
+  {{ $p = $p | append $post -}}
+{{ end }}
+<script>
+const posts = JSON.parse(
+  {{ $p | jsonify }}
+);
+{{- end }}

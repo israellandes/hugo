@@ -19,7 +19,7 @@ cp -r ~/hugo-site/quickstart/themes/hugo-w3-simple/exampleSite/* ~/hugo-site/qui
 
 cat <<'EOF' >> ~/hugo-site/quickstart/config.toml
 [outputs]
-section = ["JSON", "HTML", "RSS"]
+home = ["JSON", "HTML", "RSS"]
 EOF
 
 cp -r ~/hugo/layouts ~/hugo-site/quickstart
@@ -35,4 +35,7 @@ echo "-------------"
 #cat ~/hugo-site/quickstart/static/gen/search-index.json
 echo "-------------"
 echo
-(cd ~/hugo-site/quickstart  && hugo serve -d -t hugo-w3-simple --bind "0.0.0.0" --baseURL http://54.241.208.132:1313)
+
+cp ~/hugo/index.json ~/hugo-site/quickstart/layouts/
+
+(cd ~/hugo-site/quickstart  && hugo serve -d -t hugo-w3-simple --bind "0.0.0.0" --baseURL http://18.144.14.97:1313)

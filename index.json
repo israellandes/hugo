@@ -7,7 +7,8 @@
 	"categories": [{{ range $tindex, $tag := $page.Params.categories }}{{ if $tindex }}, {{ end }}"{{ $tag| htmlEscape }}"{{ end }}],
 	"tags": [{{ range $tindex, $tag := $page.Params.tags }}{{ if $tindex }}, {{ end }}"{{ $tag| htmlEscape }}"{{ end }}],
 	"description": "{{ htmlEscape .Description}}",
-	"content": {{$page.Plain | jsonify}}
+	"content": {{$page.Plain | jsonify}},
+	"image_url": [{{ range findRE `<img.+?>` .Content }}{{ replaceRE `.*src="(.+?)".*` "$1" . }} {{ end }}]
 }
 {{- end -}}
 {{- end -}}]
